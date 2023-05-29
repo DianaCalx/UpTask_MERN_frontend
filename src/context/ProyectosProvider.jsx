@@ -266,6 +266,7 @@ const ProyectosProvider = ({ children }) => {
       }
 
       const { data } = await clienteAxios.put(`/tareas/${tarea.id}`, tarea, config)
+      console.log(data)
       setAlerta({})
       setModalFormularioTarea(false)
 
@@ -472,6 +473,7 @@ const ProyectosProvider = ({ children }) => {
   }
 
   const actualizarTareaProyecto = tarea => {
+    console.log('hereeee')
     const proyectoActualizado = { ...proyecto }
     proyectoActualizado.tareas = proyectoActualizado.tareas.map(tareaState => tareaState._id === tarea._id ? tarea : tareaState)
     setProyecto(proyectoActualizado)
