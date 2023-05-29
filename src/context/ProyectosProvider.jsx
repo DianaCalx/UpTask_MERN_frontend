@@ -61,7 +61,6 @@ const ProyectosProvider = ({ children }) => {
   }
 
   const submitProyecto = async proyecto => {
-
     if (proyecto.id) {
       await editarProyecto(proyecto);
     } else {
@@ -215,6 +214,8 @@ const ProyectosProvider = ({ children }) => {
 
   const submitTarea = async tarea => {
 
+    console.log('Submit tarea', tarea)
+
     if (tarea?.id) {
       await editarTarea(tarea)
     } else {
@@ -252,8 +253,8 @@ const ProyectosProvider = ({ children }) => {
   }
 
   const editarTarea = async tarea => {
+    console.log('Editar tarea', tarea)
     try {
-      console.log('here')
       const token = localStorage.getItem('token');
 
       if (!token) return
@@ -266,7 +267,6 @@ const ProyectosProvider = ({ children }) => {
       }
 
       const { data } = await clienteAxios.put(`/tareas/${tarea.id}`, tarea, config)
-      console.log(data)
       setAlerta({})
       setModalFormularioTarea(false)
 
@@ -444,7 +444,6 @@ const ProyectosProvider = ({ children }) => {
         }
       }
       const { data } = await clienteAxios.post(`/tareas/estado/${id}`, {}, config)
-
       //Socket
       socket.emit('cambiar estado', data)
 
@@ -473,7 +472,6 @@ const ProyectosProvider = ({ children }) => {
   }
 
   const actualizarTareaProyecto = tarea => {
-    console.log('hereeee')
     const proyectoActualizado = { ...proyecto }
     proyectoActualizado.tareas = proyectoActualizado.tareas.map(tareaState => tareaState._id === tarea._id ? tarea : tareaState)
     setProyecto(proyectoActualizado)

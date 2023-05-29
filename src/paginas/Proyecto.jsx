@@ -20,7 +20,10 @@ const Proyecto = () => {
 
   useEffect(() => {
     obtenerProyecto(params.id);
+
   }, []);
+
+  // console.log(proyecto)
 
   useEffect(() => {
     socket = io(import.meta.env.VITE_BACKEND_URL)
@@ -47,7 +50,6 @@ const Proyecto = () => {
     })
 
     socket.on("nuevo estado", nuevoEstadoTarea => {
-      console.log(nuevoEstadoTarea)
       if (nuevoEstadoTarea.proyecto._id === proyecto._id) {
         cambiarEstadoTarea(nuevoEstadoTarea)
       }
