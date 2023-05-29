@@ -214,7 +214,6 @@ const ProyectosProvider = ({ children }) => {
 
   const submitTarea = async tarea => {
 
-    console.log('Submit tarea', tarea)
 
     if (tarea?.id) {
       await editarTarea(tarea)
@@ -253,7 +252,6 @@ const ProyectosProvider = ({ children }) => {
   }
 
   const editarTarea = async tarea => {
-    console.log('Editar tarea', tarea)
     try {
       const token = localStorage.getItem('token');
 
